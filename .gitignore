@@ -25,3 +25,14 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# IDEs
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+#codogen
+**.g.dart
+**.freezed.dart
