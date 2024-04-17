@@ -9,10 +9,6 @@ class LocalizationWidget extends StatelessWidget {
 
   final Widget Function(BuildContext) builder;
 
-  // Future<void> localizationSetup() async {
-  //   await EasyLocalization.ensureInitialized();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
