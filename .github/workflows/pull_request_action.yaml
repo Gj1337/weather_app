@@ -1,8 +1,15 @@
-name: Push job
-run-name: Push job
-on: [push]
+name: Push_job
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  FLUTTER_VERSION: 3.19.5
+
 jobs:
-  Flutter_lint:
+  Flutter_codogen_lint:
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -12,11 +19,13 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: 3.19.5
+          flutter-version: ${{ env.FLUTTER_VERSION }}
   
       - name: Flutter info
         run: flutter --version && flutter pub get
 
+      - name: Codogen
+        run: bash scripts/codogen.sh 
+
       - name: Lint
         run: bash scripts/lint.sh
-
