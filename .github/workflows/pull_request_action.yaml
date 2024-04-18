@@ -9,7 +9,7 @@ env:
   FLUTTER_VERSION: 3.19.5
 
 jobs:
-  Flutter_codogen_lint:
+  Pull_request_job:
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -29,3 +29,6 @@ jobs:
 
       - name: Lint
         run: bash scripts/lint.sh
+
+      - name: Test
+        run: flutter test
