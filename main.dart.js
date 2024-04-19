@@ -80998,7 +80998,7 @@ o!==$&&A.ae()
 p.ch=s
 o=s}if(q.e==null)A.ah(A.a9(u.w))
 q=o.agX(0,A.aqb(q,!1))
-r=r.a.a>600?B.kR:B.Dm
+r=r.a.a>800?B.kR:B.Dm
 J.e2(q).Wp(q,r)},
 $S:31}
 A.aob.prototype={
@@ -86196,7 +86196,7 @@ B.Dk=new A.oO(1,"transientCallbacks")
 B.Y9=new A.oO(2,"midFrameMicrotasks")
 B.i1=new A.oO(3,"persistentCallbacks")
 B.Dl=new A.oO(4,"postFrameCallbacks")
-B.Dm=new A.j8(600,0,"small")
+B.Dm=new A.j8(800,0,"small")
 B.kR=new A.j8(1/0,1,"big")
 B.p=new A.yV(0,"englishLike")
 B.cD=new A.yV(1,"dense")
