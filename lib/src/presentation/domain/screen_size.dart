@@ -1,5 +1,5 @@
 enum ScreenSize {
-  small(600),
+  small(800),
   big(double.infinity);
 
   final double maxWidth;
