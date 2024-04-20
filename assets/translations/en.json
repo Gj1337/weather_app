@@ -3,5 +3,14 @@
         "main": "Main",
         "list": "List",
         "settings": "Settings"
-    }
+    },
+    "errors": {
+        "commonError": "Some thing went wrong"
+    },
+    "enterCityName": "Enter city name",
+    "addLocation": "Add location",
+    "goHome": "Go home",
+    "emptyLocation": "Any location hasn't been chosen yet",
+    "pageNotFound": "Page Not found",
+    "anotherLocation": "Another location"
 }

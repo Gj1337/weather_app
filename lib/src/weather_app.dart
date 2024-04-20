@@ -4,9 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app/src/presentation/common/bottom_navigation_bar_wrapper.dart';
 import 'package:weather_app/src/presentation/common/localization_widget.dart';
+import 'package:weather_app/src/presentation/common/page_not_found_widget.dart';
 import 'package:weather_app/src/presentation/common/screen_size_provider.dart';
 import 'package:weather_app/src/presentation/screens/list_screen/list_screen.dart';
 import 'package:weather_app/src/presentation/screens/main_screen/main_screen.dart';
+import 'package:weather_app/src/presentation/screens/pick_city_screen/pick_city_screen.dart';
 import 'package:weather_app/src/presentation/screens/settings_screen/settings_screen.dart';
 
 part "presentation/routes.dart";
