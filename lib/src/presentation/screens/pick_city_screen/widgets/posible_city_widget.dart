@@ -29,7 +29,17 @@ class PosibleCityWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       alignment: Alignment.centerLeft,
       height: 40,
-      child: Text(locationString),
+      child: Row(
+        children: [
+          Image.asset(
+            width: 25,
+            height: 25,
+            'assets/image/flags/${location.countryCode.toLowerCase()}.png',
+          ),
+          const SizedBox(width: 10),
+          Text(locationString),
+        ],
+      ),
     );
   }
 }
