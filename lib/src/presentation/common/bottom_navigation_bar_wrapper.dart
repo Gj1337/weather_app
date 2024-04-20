@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app/generated/locale_keys.g.dart';
 import 'package:weather_app/src/presentation/common/screen_size_provider.dart';
+import 'package:weather_app/src/presentation/domain/animation_speed.dart';
 import 'package:weather_app/src/presentation/domain/screen_size.dart';
 import 'package:weather_app/src/weather_app.dart';
 
@@ -21,12 +22,17 @@ class ButtonNavigationBarWrapper extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final screenSize = ref.watch(screenSizeProvider);
 
-    final currentIndex = switch (path) {
-      Routes.mainScreen => 0,
-      Routes.listScreen => 1,
-      Routes.settingsScreen => 2,
-      _ => 0,
-    };
+    final int currentIndex;
+
+    if (path == Routes.mainScreen.path) {
+      currentIndex = 0;
+    } else if (path == Routes.listScreen.path) {
+      currentIndex = 1;
+    } else if (path == Routes.settingsScreen.path) {
+      currentIndex = 2;
+    } else {
+      currentIndex = 0;
+    }
 
     return Scaffold(
       body: Column(
@@ -35,17 +41,17 @@ class ButtonNavigationBarWrapper extends ConsumerWidget {
           //TODO: replace with SizeTransition
           AnimatedContainer(
             height: screenSize == ScreenSize.small ? 60 : 0,
-            duration: const Duration(milliseconds: 250),
+            duration: AnimationSpeed.fast.duration,
             child: SingleChildScrollView(
               child: BottomNavigationBar(
                 onTap: (value) {
                   switch (value) {
                     case 0:
-                      context.go(Routes.mainScreen);
+                      context.goNamed(Routes.mainScreen.name);
                     case 1:
-                      context.go(Routes.listScreen);
+                      context.goNamed(Routes.listScreen.name);
                     case 2:
-                      context.go(Routes.settingsScreen);
+                      context.goNamed(Routes.settingsScreen.name);
                   }
                 },
                 currentIndex: currentIndex,
