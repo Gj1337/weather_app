@@ -29,6 +29,7 @@ class CityNameTextField extends HookConsumerWidget {
         prefixIcon: const Icon(Icons.add_location),
         border: const OutlineInputBorder(),
         labelText: LocaleKeys.enterCityName.tr(),
+        counterText: LocaleKeys.onlyEngLetters.tr(),
       ),
     );
   }

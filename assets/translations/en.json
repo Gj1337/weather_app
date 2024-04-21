@@ -12,5 +12,6 @@
     "goHome": "Go home",
     "emptyLocation": "Any location hasn't been chosen yet",
     "pageNotFound": "Page Not found",
-    "anotherLocation": "Another location"
+    "anotherLocation": "Another location",
+    "onlyEngLetters": "Only english letters"
 }
