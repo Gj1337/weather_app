@@ -1,0 +1,11 @@
+# For set-up splash-screen run following command
+#dart run flutter_native_splash:create
+
+flutter_native_splash:
+  
+  color: "#ffffff"
+  color_dark: "#1e1e1e"
+
+  image: "assets/icon/mac_icon.png"
+
+  android_12:
