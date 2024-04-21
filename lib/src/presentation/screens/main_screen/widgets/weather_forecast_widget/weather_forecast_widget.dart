@@ -13,6 +13,7 @@ class WeatherForecastWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(mainScreenStateNotifierProvider.notifier);
     final state = ref.watch(mainScreenStateNotifierProvider);
 
     final MainScreenState(
@@ -20,6 +21,8 @@ class WeatherForecastWidget extends ConsumerWidget {
       :currentWeather,
       :fetchError,
     ) = state;
+
+    final colorSheme = Theme.of(context).colorScheme;
 
     //TODO divide to separated widget
 
@@ -31,7 +34,7 @@ class WeatherForecastWidget extends ConsumerWidget {
             ? Text(
                 fetchError,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.error,
+                  color: colorSheme.error,
                 ),
               )
             : location != null && currentWeather != null
@@ -42,9 +45,20 @@ class WeatherForecastWidget extends ConsumerWidget {
                   ))
                 : const CircularProgressIndicator(),
         const SizedBox(height: 10),
-        TextButton(
-          onPressed: () => context.goNamed(Routes.pickCityScreen.name),
-          child: Text(LocaleKeys.anotherLocation.tr()),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+                onPressed: notifier.onRefreshWeathreClick,
+                icon: Icon(
+                  Icons.refresh,
+                  color: colorSheme.primary,
+                )),
+            TextButton(
+              onPressed: () => context.goNamed(Routes.pickCityScreen.name),
+              child: Text(LocaleKeys.anotherLocation.tr()),
+            ),
+          ],
         )
       ],
     ));

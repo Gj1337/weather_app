@@ -17,7 +17,7 @@ class _MyPrinter extends LogPrinter {
     final isImportant = event.level.value > 3000;
 
     final text = (kDebugMode || isImportant)
-        ? [printerName, event.message.toString(), '\r\n']
+        ? ['➡ $printerName', event.message.toString(), '\r\n']
         : <String>[];
 
     return text;
