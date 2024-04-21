@@ -1,0 +1,21 @@
+# For set-up new icon run following command
+# dart run flutter_launcher_icons
+
+flutter_launcher_icons:
+  image_path: "assets/icon/android_icon.png"
+  android: "launcher_icon"
+
+  ios: true
+  remove_alpha_channel_ios: true
+
+  web:
+    generate: true
+    image_path: "assets/icon/web_icon.png"
+
+  windows:
+    generate: true
+    image_path: "assets/icon/mac_icon.png"
+
+  macos:
+    generate: true
+    image_path: "assets/icon/mac_icon.png"
