@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weather_app/src/data/data_source/location_cache_client.dart';
 import 'package:weather_app/src/data/data_source/location_rest_client.dart';
+import 'package:weather_app/src/data/data_source/weather_cache_client.dart';
 import 'package:weather_app/src/data/data_source/weather_rest_client.dart';
 import 'package:weather_app/src/data/repository/location_repostiry_impl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -12,6 +15,10 @@ import 'package:weather_app/src/presentation/screens/pick_city_screen/state_mana
 
 part 'providers.g.dart';
 
+Future<void> initDi() async {
+  _sharedPreferences = await SharedPreferences.getInstance();
+}
+
 //DataSources
 @Riverpod(keepAlive: true)
 Dio dio(DioRef ref) => Dio(
@@ -22,10 +29,22 @@ Dio dio(DioRef ref) => Dio(
       ),
     );
 
+late final SharedPreferences _sharedPreferences;
+
+@Riverpod(keepAlive: true)
+SharedPreferences sharedPreferences(SharedPreferencesRef ref) =>
+    _sharedPreferences;
+
 @Riverpod(keepAlive: true)
 LocationRestClient locationRestClient(LocationRestClientRef ref) =>
     LocationRestClient(
       ref.watch(dioProvider),
+    );
+
+@Riverpod(keepAlive: true)
+LocationCacheClient locationCacheClient(LocationCacheClientRef ref) =>
+    LocationCacheClient(
+      ref.watch(sharedPreferencesProvider),
     );
 
 @Riverpod(keepAlive: true)
@@ -34,32 +53,37 @@ WeatherRestClient weatherRestClient(WeatherRestClientRef ref) =>
       ref.watch(dioProvider),
     );
 
-//Reposes
 @Riverpod(keepAlive: true)
-NetworkLocationRepositoryImpl networkLocationRepository(
-        NetworkLocationRepositoryRef ref) =>
-    NetworkLocationRepositoryImpl(
-      ref.watch(locationRestClientProvider),
+WeatherCacheClient weatherCacheClient(WeatherCacheClientRef ref) =>
+    WeatherCacheClient(
+      ref.watch(sharedPreferencesProvider),
     );
 
+//Reposes
 @Riverpod(keepAlive: true)
-NetworkWeatherRepositoryImpl networkWeatherRepository(
-        NetworkWeatherRepositoryRef ref) =>
-    NetworkWeatherRepositoryImpl(
+LocationRepositoryImpl locationRepository(LocationRepositoryRef ref) =>
+    LocationRepositoryImpl(ref.watch(locationRestClientProvider),
+        ref.watch(locationCacheClientProvider));
+
+@Riverpod(keepAlive: true)
+WeatherRepositoryImpl weatherRepository(WeatherRepositoryRef ref) =>
+    WeatherRepositoryImpl(
       ref.watch(weatherRestClientProvider),
+      ref.watch(weatherCacheClientProvider),
     );
 
 //State controllers
 final pickCityScreenStateNotifierProvider = AutoDisposeStateNotifierProvider<
     PickCityScreenStateNotifier, PickCityScreenState>(
   (ref) => PickCityScreenStateNotifier(
-    ref.watch(networkLocationRepositoryProvider),
+    ref.watch(locationRepositoryProvider),
   ),
 );
 
 final mainScreenStateNotifierProvider =
     StateNotifierProvider<MainScreenStateNotifier, MainScreenState>(
   (ref) => MainScreenStateNotifier(
-    ref.watch(networkWeatherRepositoryProvider),
+    ref.watch(weatherRepositoryProvider),
+    ref.watch(locationRepositoryProvider),
   ),
 );
