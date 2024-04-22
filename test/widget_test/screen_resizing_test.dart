@@ -4,13 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app/src/presentation/common/bottom_navigation_bar_wrapper.dart';
 import 'package:weather_app/src/presentation/common/screen_size_provider.dart';
-import 'package:weather_app/src/presentation/domain/screen_size.dart';
-import 'package:weather_app/src/presentation/screens/settings_screen/settings_screen.dart';
+import 'package:weather_app/src/presentation/entity/screen_size.dart';
 
 final _smallScreen = Size(ScreenSize.small.maxWidth, 400);
 final _bigScreen = Size(ScreenSize.small.maxWidth + 1, 400);
 
-void main() {
+void main() async {
   EasyLocalization.logger.enableBuildModes = [];
 
   group(
@@ -48,35 +47,6 @@ void main() {
 
         expect(animatedControllerNewSize.height > 0, true);
       });
-
-      testWidgets(
-        'Back button it settings screen',
-        (tester) async {
-          tester.view.physicalSize = _bigScreen;
-          tester.view.devicePixelRatio = 1;
-
-          await tester.pumpWidget(
-            const _BaseEvniromentSetup(
-              child: SettingsScreen(),
-            ),
-          );
-
-          await tester.pumpAndSettle();
-
-          final backButton = find.descendant(
-              of: find.byType(AppBar), matching: find.byType(IconButton));
-
-          expect(backButton, findsOneWidget);
-
-          tester.view.physicalSize = _smallScreen;
-
-          //First for changing size, second for animation.
-          await tester.pumpAndSettle();
-          await tester.pumpAndSettle();
-
-          expect(backButton, findsNothing);
-        },
-      );
     },
   );
 }

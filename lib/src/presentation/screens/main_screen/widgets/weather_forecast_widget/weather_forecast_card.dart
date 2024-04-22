@@ -32,16 +32,22 @@ class WeatherForecastCard extends StatelessWidget {
     final iconTextStyle = TextStyle(color: iconColor);
 
     return Card(
-      child: Padding(
+      child: Container(
+        width: 400,
         padding: const EdgeInsets.all(25),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(location.name, style: cityNameTextStyle),
+            Text(
+              location.name,
+              style: cityNameTextStyle,
+              textAlign: TextAlign.center,
+            ),
             Text(currentWeather.temperatureText, style: temperatureTextStyle),
             const SizedBox(height: 10),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   children: [

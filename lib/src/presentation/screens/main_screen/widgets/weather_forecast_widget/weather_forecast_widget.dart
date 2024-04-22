@@ -38,11 +38,10 @@ class WeatherForecastWidget extends ConsumerWidget {
                 ),
               )
             : location != null && currentWeather != null
-                ? FittedBox(
-                    child: WeatherForecastCard(
+                ? WeatherForecastCard(
                     location: location,
                     currentWeather: currentWeather,
-                  ))
+                  )
                 : const CircularProgressIndicator(),
         const SizedBox(height: 10),
         Row(
