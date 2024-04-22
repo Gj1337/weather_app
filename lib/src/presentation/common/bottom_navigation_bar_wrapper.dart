@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app/generated/locale_keys.g.dart';
 import 'package:weather_app/src/presentation/common/screen_size_provider.dart';
-import 'package:weather_app/src/presentation/domain/animation_speed.dart';
-import 'package:weather_app/src/presentation/domain/screen_size.dart';
+import 'package:weather_app/src/presentation/entity/animation_speed.dart';
+import 'package:weather_app/src/presentation/entity/screen_size.dart';
 import 'package:weather_app/src/weather_app.dart';
 
 class ButtonNavigationBarWrapper extends ConsumerWidget {

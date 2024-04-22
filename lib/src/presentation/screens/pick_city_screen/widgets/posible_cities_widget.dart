@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app/src/di/providers.dart';
-import 'package:weather_app/src/presentation/domain/animation_speed.dart';
+import 'package:weather_app/src/presentation/entity/animation_speed.dart';
 import 'package:weather_app/src/presentation/screens/pick_city_screen/widgets/posible_city_widget.dart';
 
 class PosibleCitiesWidget extends ConsumerWidget {

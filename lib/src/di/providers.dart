@@ -12,6 +12,8 @@ import 'package:weather_app/src/presentation/screens/main_screen/state_managment
 import 'package:weather_app/src/presentation/screens/main_screen/state_managment/main_screen_state_notifier.dart';
 import 'package:weather_app/src/presentation/screens/pick_city_screen/state_managment/pick_city_screen_state.dart';
 import 'package:weather_app/src/presentation/screens/pick_city_screen/state_managment/pick_city_screen_state_notifier.dart';
+import 'package:weather_app/src/presentation/screens/settings_screen/state_managment/settings_notifier.dart';
+import 'package:weather_app/src/presentation/screens/settings_screen/state_managment/settings_state.dart';
 
 part 'providers.g.dart';
 
@@ -85,5 +87,12 @@ final mainScreenStateNotifierProvider =
   (ref) => MainScreenStateNotifier(
     ref.watch(weatherRepositoryProvider),
     ref.watch(locationRepositoryProvider),
+  ),
+);
+
+final settingsStateNotifierProvider =
+    StateNotifierProvider<SettingsNotifier, SettingsState>(
+  (ref) => SettingsNotifier(
+    ref.watch(sharedPreferencesProvider),
   ),
 );

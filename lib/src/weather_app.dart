@@ -6,6 +6,7 @@ import 'package:weather_app/src/presentation/common/bottom_navigation_bar_wrappe
 import 'package:weather_app/src/presentation/common/localization_widget.dart';
 import 'package:weather_app/src/presentation/common/page_not_found_widget.dart';
 import 'package:weather_app/src/presentation/common/screen_size_provider.dart';
+import 'package:weather_app/src/presentation/common/app_theme_builder.dart';
 import 'package:weather_app/src/presentation/screens/list_screen/list_screen.dart';
 import 'package:weather_app/src/presentation/screens/main_screen/main_screen.dart';
 import 'package:weather_app/src/presentation/screens/pick_city_screen/pick_city_screen.dart';
@@ -21,11 +22,17 @@ class WeatherApp extends StatelessWidget {
     return ProviderScope(
       child: ScreenSizeProviderWidget(
         child: LocalizationWidget(
-          builder: (localizationContext) => MaterialApp.router(
-            routerConfig: _router,
-            localizationsDelegates: localizationContext.localizationDelegates,
-            supportedLocales: localizationContext.supportedLocales,
-            locale: localizationContext.locale,
+          builder: (localizationContext) => AppThemeBuilder(
+            builder: (context, lightTheme, darkTheme, themeMode) =>
+                MaterialApp.router(
+              themeMode: themeMode,
+              theme: lightTheme,
+              darkTheme: darkTheme,
+              routerConfig: _router,
+              localizationsDelegates: localizationContext.localizationDelegates,
+              supportedLocales: localizationContext.supportedLocales,
+              locale: localizationContext.locale,
+            ),
           ),
         ),
       ),
