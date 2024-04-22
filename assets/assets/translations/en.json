@@ -7,11 +7,20 @@
     "errors": {
         "commonError": "Some thing went wrong"
     },
+    "themeMode": {
+        "dark": "Dark",
+        "light": "Light",
+        "sysytem": "System"
+    },
     "enterCityName": "Enter city name",
     "addLocation": "Add location",
     "goHome": "Go home",
     "emptyLocation": "Any location hasn't been chosen yet",
     "pageNotFound": "Page Not found",
     "anotherLocation": "Another location",
-    "onlyEngLetters": "Only english letters"
+    "onlyEngLetters": "Only english letters",
+    "cancel": "Cancel",
+    "appThemeMode": "App theme mode",
+    "primaryColor": "Primary color",
+    "colorPicker": "Color picker"
 }
