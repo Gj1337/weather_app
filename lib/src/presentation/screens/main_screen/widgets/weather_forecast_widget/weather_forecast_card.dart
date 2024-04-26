@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/src/domain/entity/current_weather.dart';
+import 'package:weather_app/src/domain/entity/detail_weather.dart';
 import 'package:weather_app/src/domain/entity/location.dart';
 
 class WeatherForecastCard extends StatelessWidget {
   const WeatherForecastCard({
     super.key,
-    required this.currentWeather,
+    required this.detailWeather,
     required this.location,
   });
 
-  final CurrentWeather currentWeather;
+  final DetailWeather detailWeather;
   final Location location;
 
   @override
@@ -44,7 +44,7 @@ class WeatherForecastCard extends StatelessWidget {
               style: cityNameTextStyle,
               textAlign: TextAlign.center,
             ),
-            Text(currentWeather.temperatureText, style: temperatureTextStyle),
+            Text(detailWeather.temperatureText, style: temperatureTextStyle),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -52,14 +52,14 @@ class WeatherForecastCard extends StatelessWidget {
                 Row(
                   children: [
                     Icon(Icons.water_drop_outlined, color: iconColor),
-                    Text(currentWeather.humidityText, style: iconTextStyle),
+                    Text(detailWeather.humidityText, style: iconTextStyle),
                   ],
                 ),
                 const SizedBox(width: 15),
                 Row(
                   children: [
                     Icon(Icons.air, color: iconColor),
-                    Text(currentWeather.windSpeedText, style: iconTextStyle),
+                    Text(detailWeather.windSpeedText, style: iconTextStyle),
                   ],
                 )
               ],

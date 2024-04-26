@@ -48,4 +48,8 @@ final class LocationCacheClient {
 
     return data;
   }
+
+  Future<void> removeMainLocation() {
+    return _sharedPreferences.remove(_Keys.mainLocation);
+  }
 }

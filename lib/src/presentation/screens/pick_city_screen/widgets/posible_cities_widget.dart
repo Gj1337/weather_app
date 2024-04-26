@@ -12,8 +12,8 @@ class PosibleCitiesWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(pickCityScreenStateNotifierProvider);
 
-    final mainScreenNotifier =
-        ref.watch(mainScreenStateNotifierProvider.notifier);
+    final listScreenNotifier =
+        ref.watch(listScreenStateNotifierProvider.notifier);
 
     final error = state.fetchError;
 
@@ -31,8 +31,9 @@ class PosibleCitiesWidget extends ConsumerWidget {
               itemCount: state.possibleCities.length,
               itemBuilder: (_, index) => InkWell(
                 onTap: () {
-                  mainScreenNotifier
-                      .onNewLocationChanged(state.possibleCities[index]);
+                  listScreenNotifier.onLocationAdded(
+                    state.possibleCities[index],
+                  );
 
                   context.pop();
                 },

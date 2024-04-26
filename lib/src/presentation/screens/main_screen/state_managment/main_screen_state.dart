@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:weather_app/src/domain/entity/current_weather.dart';
+import 'package:weather_app/src/domain/entity/detail_weather.dart';
 import 'package:weather_app/src/domain/entity/location.dart';
 
 part 'main_screen_state.freezed.dart';
@@ -8,7 +8,7 @@ part 'main_screen_state.freezed.dart';
 class MainScreenState with _$MainScreenState {
   factory MainScreenState({
     Location? location,
-    CurrentWeather? currentWeather,
+    DetailWeather? detailWeather,
     String? fetchError,
   }) = _MainScreenState;
 }

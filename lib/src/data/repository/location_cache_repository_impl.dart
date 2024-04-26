@@ -1,29 +1,13 @@
 import 'package:weather_app/src/data/data_source/location_cache_client.dart';
-import 'package:weather_app/src/data/data_source/location_rest_client.dart';
 import 'package:weather_app/src/domain/entity/location.dart';
-import 'package:weather_app/src/domain/repository/location_repository.dart';
+import 'package:weather_app/src/domain/repository/location_cache_repository.dart';
 
-final class LocationRepositoryImpl implements LocationRepository {
-  LocationRepositoryImpl(
-    this._locationRestClient,
+final class LocationCacheRepositoryImpl implements LocationCacheRepository {
+  LocationCacheRepositoryImpl(
     this._locationCachedClient,
   );
 
-  final LocationRestClient _locationRestClient;
   final LocationCacheClient _locationCachedClient;
-
-  @override
-  Future<List<Location>> getLocationsByName(String name,
-      //TODO add locale supporting
-      {String language = 'en'}) async {
-    final locationsResonce = await _locationRestClient.getLocations(
-      name,
-      50,
-      language,
-    );
-
-    return locationsResonce.results ?? [];
-  }
 
   @override
   Future<List<Location>?> getCachedLocations() async =>
@@ -40,4 +24,8 @@ final class LocationRepositoryImpl implements LocationRepository {
   @override
   Future<void> putCachedMainLocation(Location location) async =>
       _locationCachedClient.putMainLocation(location);
+
+  @override
+  Future<void> removeCachedMainLocation() =>
+      _locationCachedClient.removeMainLocation();
 }
