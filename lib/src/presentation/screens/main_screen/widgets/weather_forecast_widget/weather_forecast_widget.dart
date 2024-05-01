@@ -1,12 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:weather_app/generated/locale_keys.g.dart';
 import 'package:weather_app/src/di/providers.dart';
 import 'package:weather_app/src/presentation/screens/main_screen/state_managment/main_screen_state.dart';
 import 'package:weather_app/src/presentation/screens/main_screen/widgets/weather_forecast_widget/weather_forecast_card.dart';
-import 'package:weather_app/src/weather_app.dart';
 
 class WeatherForecastWidget extends ConsumerWidget {
   const WeatherForecastWidget({super.key});
@@ -18,7 +14,7 @@ class WeatherForecastWidget extends ConsumerWidget {
 
     final MainScreenState(
       :location,
-      :currentWeather,
+      :detailWeather,
       :fetchError,
     ) = state;
 
@@ -37,10 +33,10 @@ class WeatherForecastWidget extends ConsumerWidget {
                   color: colorSheme.error,
                 ),
               )
-            : location != null && currentWeather != null
+            : location != null && detailWeather != null
                 ? WeatherForecastCard(
                     location: location,
-                    currentWeather: currentWeather,
+                    detailWeather: detailWeather,
                   )
                 : const CircularProgressIndicator(),
         const SizedBox(height: 10),
@@ -48,14 +44,11 @@ class WeatherForecastWidget extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-                onPressed: notifier.onRefreshWeathreClick,
-                icon: Icon(
-                  Icons.refresh,
-                  color: colorSheme.primary,
-                )),
-            TextButton(
-              onPressed: () => context.goNamed(Routes.pickCityScreen.name),
-              child: Text(LocaleKeys.anotherLocation.tr()),
+              onPressed: notifier.onRefreshWeathreClick,
+              icon: Icon(
+                Icons.refresh,
+                color: colorSheme.primary,
+              ),
             ),
           ],
         )

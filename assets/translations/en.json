@@ -12,6 +12,10 @@
         "light": "Light",
         "sysytem": "System"
     },
+    "cityCardMenu": {
+        "setMain": "Set main",
+        "delete": "Delete"
+    },
     "enterCityName": "Enter city name",
     "addLocation": "Add location",
     "goHome": "Go home",

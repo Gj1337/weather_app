@@ -5,9 +5,13 @@ import 'package:weather_app/src/data/data_source/location_cache_client.dart';
 import 'package:weather_app/src/data/data_source/location_rest_client.dart';
 import 'package:weather_app/src/data/data_source/weather_cache_client.dart';
 import 'package:weather_app/src/data/data_source/weather_rest_client.dart';
-import 'package:weather_app/src/data/repository/location_repostiry_impl.dart';
+import 'package:weather_app/src/data/repository/location_cache_repository_impl.dart';
+import 'package:weather_app/src/data/repository/location_network_repostiry_impl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:weather_app/src/data/repository/weather_repository_impl.dart';
+import 'package:weather_app/src/data/repository/weather_cache_repository_impl.dart';
+import 'package:weather_app/src/data/repository/weather_network_repository_impl.dart';
+import 'package:weather_app/src/presentation/screens/list_screen/state_managment/list_screen_state.dart';
+import 'package:weather_app/src/presentation/screens/list_screen/state_managment/list_screen_state_notifier.dart';
 import 'package:weather_app/src/presentation/screens/main_screen/state_managment/main_screen_state.dart';
 import 'package:weather_app/src/presentation/screens/main_screen/state_managment/main_screen_state_notifier.dart';
 import 'package:weather_app/src/presentation/screens/pick_city_screen/state_managment/pick_city_screen_state.dart';
@@ -63,14 +67,30 @@ WeatherCacheClient weatherCacheClient(WeatherCacheClientRef ref) =>
 
 //Reposes
 @Riverpod(keepAlive: true)
-LocationRepositoryImpl locationRepository(LocationRepositoryRef ref) =>
-    LocationRepositoryImpl(ref.watch(locationRestClientProvider),
-        ref.watch(locationCacheClientProvider));
+LocationNetowrkRepositoryImpl locationNetworkRepository(
+        LocationNetworkRepositoryRef ref) =>
+    LocationNetowrkRepositoryImpl(
+      ref.watch(locationRestClientProvider),
+    );
 
 @Riverpod(keepAlive: true)
-WeatherRepositoryImpl weatherRepository(WeatherRepositoryRef ref) =>
-    WeatherRepositoryImpl(
+WeatherNewtorkRepositoryImpl weatherNetworkRepository(
+        WeatherNetworkRepositoryRef ref) =>
+    WeatherNewtorkRepositoryImpl(
       ref.watch(weatherRestClientProvider),
+    );
+
+@Riverpod(keepAlive: true)
+LocationCacheRepositoryImpl locationCacheRepository(
+        LocationCacheRepositoryRef ref) =>
+    LocationCacheRepositoryImpl(
+      ref.watch(locationCacheClientProvider),
+    );
+
+@Riverpod(keepAlive: true)
+WeatherCacheRepositoryImpl weatherCacheRepository(
+        WeatherCacheRepositoryRef ref) =>
+    WeatherCacheRepositoryImpl(
       ref.watch(weatherCacheClientProvider),
     );
 
@@ -78,15 +98,25 @@ WeatherRepositoryImpl weatherRepository(WeatherRepositoryRef ref) =>
 final pickCityScreenStateNotifierProvider = AutoDisposeStateNotifierProvider<
     PickCityScreenStateNotifier, PickCityScreenState>(
   (ref) => PickCityScreenStateNotifier(
-    ref.watch(locationRepositoryProvider),
+    ref.watch(locationNetworkRepositoryProvider),
   ),
 );
 
 final mainScreenStateNotifierProvider =
     StateNotifierProvider<MainScreenStateNotifier, MainScreenState>(
   (ref) => MainScreenStateNotifier(
-    ref.watch(weatherRepositoryProvider),
-    ref.watch(locationRepositoryProvider),
+    ref.watch(weatherNetworkRepositoryProvider),
+    ref.watch(weatherCacheRepositoryProvider),
+    ref.watch(locationCacheRepositoryProvider),
+  ),
+);
+
+final listScreenStateNotifierProvider =
+    StateNotifierProvider<ListScreenStateNotifier, ListScreenState>(
+  (ref) => ListScreenStateNotifier(
+    ref.watch(weatherNetworkRepositoryProvider),
+    ref.watch(weatherCacheRepositoryProvider),
+    ref.watch(locationCacheRepositoryProvider),
   ),
 );
 
