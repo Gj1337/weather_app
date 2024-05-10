@@ -16,7 +16,9 @@ abstract class WeatherRestClient {
     @Query('current') String current = 'temperature_2m,'
         'relative_humidity_2m,'
         'wind_speed_10m,'
-        'wind_direction_10m',
+        'wind_direction_10m,'
+        'weather_code,'
+        'is_day',
   });
 
   @GET('/forecast')
@@ -29,6 +31,8 @@ abstract class WeatherRestClient {
     @Query('current') String current = 'temperature_2m,'
         'relative_humidity_2m,'
         'wind_speed_10m,'
-        'wind_direction_10m',
+        'wind_direction_10m,'
+        'weather_code,'
+        'is_day',
   });
 }

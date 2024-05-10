@@ -98,7 +98,7 @@ final class ListScreenStateNotifier extends StateNotifier<ListScreenState>
     final newMainLocation =
         location == state.mainLocation && state.cityWithForecast.keys.isNotEmpty
             ? state.cityWithForecast.keys.first
-            : null;
+            : state.mainLocation;
 
     state = state.copyWith(
       mainLocation: newMainLocation,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/src/domain/entity/detail_weather.dart';
 import 'package:weather_app/src/domain/entity/location.dart';
+import 'package:weather_app/src/presentation/common/weather_image_widget.dart';
+import 'package:weather_app/src/utils/weather_state_tranlsation.dart';
 
 class WeatherForecastCard extends StatelessWidget {
   const WeatherForecastCard({
@@ -44,7 +46,26 @@ class WeatherForecastCard extends StatelessWidget {
               style: cityNameTextStyle,
               textAlign: TextAlign.center,
             ),
-            Text(detailWeather.temperatureText, style: temperatureTextStyle),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: WeatherImageWidget(
+                    weatherState:
+                        detailWeather.detailWeatherValues.currentWeatherState,
+                    isDay: detailWeather.detailWeatherValues.isDay,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Text(detailWeather.temperatureText,
+                    style: temperatureTextStyle),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(trWeatherState(
+                detailWeather.detailWeatherValues.currentWeatherState)),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
