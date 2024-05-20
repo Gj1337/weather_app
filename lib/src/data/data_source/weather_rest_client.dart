@@ -19,6 +19,11 @@ abstract class WeatherRestClient {
         'wind_direction_10m,'
         'weather_code,'
         'is_day',
+    @Query('hourly') String hourly = 'temperature_2m,'
+        'weather_code,'
+        'wind_speed_10m,'
+        'wind_direction_10m',
+    @Query('timeformat') String timeFormat = 'unixtime',
   });
 
   @GET('/forecast')

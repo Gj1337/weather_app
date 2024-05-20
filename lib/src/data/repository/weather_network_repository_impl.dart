@@ -24,6 +24,7 @@ final class WeatherNewtorkRepositoryImpl implements WeatherNewtorkRepository {
     return DetailWeather(
       detailWeatherValues: currentWeatherResponce.detailWeatherValues,
       detailWeatherUnits: currentWeatherResponce.detailWeatherUnits,
+      hourlyForecast: currentWeatherResponce.hourlyForecast,
     );
   }
 

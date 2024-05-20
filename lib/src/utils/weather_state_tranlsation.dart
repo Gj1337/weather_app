@@ -3,12 +3,12 @@ import 'package:weather_app/generated/locale_keys.g.dart';
 import 'package:weather_app/src/domain/entity/weather_state.dart';
 
 String trWeatherState(WeatherState weatherState) => switch (weatherState) {
-      WeatherState.clearSky => LocaleKeys.weather_state_clearSky.tr(),
+      WeatherState.clearSky => LocaleKeys.weather_state_clearsky.tr(),
       WeatherState.mainlyClearSky =>
-        LocaleKeys.weather_state_mainlyClearSky.tr(),
+        LocaleKeys.weather_state_mainlyclearSky.tr(),
       WeatherState.partlyCloudy => LocaleKeys.weather_state_partlyCloudy.tr(),
       WeatherState.overcast => LocaleKeys.weather_state_overcast.tr(),
-      WeatherState.fog => LocaleKeys.weather_state_clearSky.tr(),
+      WeatherState.fog => LocaleKeys.weather_state_fog.tr(),
       WeatherState.depositingRimeFog =>
         LocaleKeys.weather_state_depositingRimeFog.tr(),
       WeatherState.lightDrizzle => LocaleKeys.weather_state_lightDrizzle.tr(),
@@ -19,7 +19,7 @@ String trWeatherState(WeatherState weatherState) => switch (weatherState) {
       WeatherState.lightFreezingDrizzle =>
         LocaleKeys.weather_state_lightFreezingDrizzle.tr(),
       WeatherState.heavyFreezingDrizzle =>
-        LocaleKeys.weather_state_clearSky.tr(),
+        LocaleKeys.weather_state_heavyFreezingDrizzle.tr(),
       WeatherState.slightRain => LocaleKeys.weather_state_slightRain.tr(),
       WeatherState.moderateRain => LocaleKeys.weather_state_moderateRain.tr(),
       WeatherState.heavyIntensityRain =>

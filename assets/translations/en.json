@@ -17,8 +17,8 @@
         "delete": "Delete"
     },
     "weather_state": {
-        "clearSky": "Clear sky",
-        "mainlyClearSky": "Mainly clear sky",
+        "clearsky": "clear sky",
+        "mainlyclearSky": "Mainly clear sky",
         "partlyCloudy": "Partly cloudy",
         "overcast": "Overcast",
         "fog": "Fog",

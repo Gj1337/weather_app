@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:weather_app/src/domain/entity/is_day_converter.dart';
+import 'package:weather_app/src/domain/entity/json_converter/is_day_converter.dart';
 import 'package:weather_app/src/domain/entity/weather_state.dart';
 
 part 'simple_weather_values.freezed.dart';

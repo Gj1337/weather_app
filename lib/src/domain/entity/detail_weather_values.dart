@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:weather_app/src/domain/entity/is_day_converter.dart';
+import 'package:weather_app/src/domain/entity/json_converter/date_time_converter.dart';
+import 'package:weather_app/src/domain/entity/json_converter/is_day_converter.dart';
 import 'package:weather_app/src/domain/entity/weather_state.dart';
 
 part 'detail_weather_values.freezed.dart';
@@ -8,7 +9,7 @@ part 'detail_weather_values.g.dart';
 @freezed
 class DetailWeatherValues with _$DetailWeatherValues {
   factory DetailWeatherValues({
-    required String time,
+    @DateTimeConverter() required DateTime time,
     required int interval,
     @JsonKey(name: 'temperature_2m') required double temperature,
     @JsonKey(name: 'relative_humidity_2m') required int relativeHumidity,
