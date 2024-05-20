@@ -18,11 +18,9 @@ class AddNewCityWidget extends StatelessWidget {
           context.goNamed(Routes.pickCityScreen.name);
         },
         style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: const BorderRadius.all(Radius.circular(
-                      15.0) //                 <--- border radius here
-                  ),
+              borderRadius: const BorderRadius.all(Radius.circular(15.0)),
               side: BorderSide(
                 width: 1.5,
                 color: theme.colorScheme.primary,
